@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAREL STORE — Kirim WhatsApp</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: sans-serif; }
+        body { background: #111; color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .container { background: #1f1f1f; border-radius: 16px; padding: 30px; max-width: 420px; width: 100%; box-shadow: 0 0 30px #25d36640; border: 1px solid #25d36660; }
+        h1 { color: #25d366; text-align: center; margin-bottom: 25px; font-size: 22px; }
+        .input-box { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #ccc; }
+        input, textarea { width: 100%; padding: 12px; border-radius: 8px; border: none; background: #2f2f2f; color: #fff; font-size: 15px; }
+        button { width: 100%; padding: 14px; background: #25d366; color: #fff; border: none; border-radius: 8px; font-size: 17px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #20b859; transform: scale(1.02); }
+        .footer { margin-top: 20px; text-align: center; color: #666; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💬 KIRIM PESAN WHATSAPP</h1>
+        
+        <div class="input-box">
+            <label>Nomor Tujuan</label>
+            <input type="tel" id="nomor" placeholder="Contoh: 6281234567890">
+        </div>
+        
+        <div class="input-box">
+            <label>Pesan</label>
+            <textarea id="pesan" rows="4" placeholder="Tulis pesan..."></textarea>
+        </div>
+        
+        <button onclick="kirimWA()">KIRIM SEKARANG</button>
+        
+        <div class="footer">
+            FAREL STORE © 2026<br>
+            🔒 Aman & Resmi — Menggunakan Link WhatsApp
+        </div>
+    </div>
+
+    <script>
+        function kirimWA() {
+            let nomor = document.getElementById('nomor').value.trim();
+            let pesan = encodeURIComponent(document.getElementById('pesan').value.trim());
+            
+            if (!nomor) {
+                alert('❌ Isi nomor dulu!');
+                return;
+            }
+            
+            // Hapus angka 0 di depan, ganti dengan 62
+            if (nomor.startsWith('0')) nomor = '62' + nomor.slice(1);
+            if (!nomor.startsWith('62')) nomor = '62' + nomor;
+            
+            // Buka WhatsApp resmi
+            let link = `https://wa.me/${nomor}?text=${pesan}`;
+            window.open(link, '_blank');
+        }
+    </script>
+</body>
+</html>
